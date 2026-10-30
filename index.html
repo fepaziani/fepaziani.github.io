@@ -146,7 +146,7 @@ ul.plain li{margin-bottom:.35rem}
       <tr><td><a href="#p2">Service pricing engine</a></td><td>Insurer's home-services arm<sup><a href="#fn1" id="r1a">1</a></sup></td><td>Python pricing strategies, web price signals</td><td>Working MVP; strategy-collapse bug found and fixed</td></tr>
       <tr><td><a href="#p3">Competitor intelligence agent</a></td><td>Retail strategy, Peers</td><td>LLM pipeline with source audit trail</td><td>9-step design, 38-attribute catalogue, pilot scoped</td></tr>
       <tr><td><a href="#p4">Process diagnostic</a></td><td>Product launches at an insurer<sup><a href="#fn1" id="r1b">1</a></sup></td><td>Structured interview evidence base</td><td>78 validated evidence records, 16-item roadmap</td></tr>
-      <tr><td><a href="#p5">Case-study generator</a></td><td>Marketing, Peers</td><td>Python document automation</td><td>Validated with 4 real cases across 4 practices</td></tr>
+      <tr><td><a href="#p5">Case-study pipeline</a></td><td>Marketing, Peers</td><td>Python document automation, review-workflow prototype</td><td>4 real cases run through generator and review flow</td></tr>
     </tbody>
   </table>
   </div>
@@ -214,13 +214,13 @@ ul.plain li{margin-bottom:.35rem}
   <dt>Stack</dt><dd>Excel, PowerPoint, process mapping.</dd>
 </dl>
 
-<h3 id="p5"><span class="n">3.5</span>Case-study generator</h3>
+<h3 id="p5"><span class="n">3.5</span>Case-study pipeline: generator and case hub</h3>
 <p class="lede">Peers Consulting + Technology, 2026</p>
 <dl class="case">
   <dt>Setting</dt><dd>Marketing needed project write-ups for the website and institutional deck, but drafting each one from internal project files took hours and the formats kept breaking.</dd>
-  <dt>Approach</dt><dd>A Python generator that turns a project one-pager into site and deck versions. It checks character limits, measures whether text fits each slide using font metrics, refuses to invent figures, and places client logos from a 135-logo library, choosing the background automatically.</dd>
-  <dt>Result</dt><dd>Tested end to end on four real cases across Strategy, Cybersecurity, Tech Strategy and Analytics.</dd>
-  <dt>Stack</dt><dd>Python, python-pptx, PDF rendering, Claude skills.</dd>
+  <dt>Approach</dt><dd>Two parts. A Python generator turns a project one-pager into site and deck versions: it checks character limits, measures whether text fits each slide using font metrics, refuses to invent figures, and places client logos from a 135-logo library, choosing the background automatically. On top of it I prototyped a case hub: each practice submits its project material with an owner and deadlines, the case page is generated in the website's own format, Marketing reviews and edits it, and nothing is published until both the practice and Marketing sign off.</dd>
+  <dt>Result</dt><dd>Generator tested end to end on four real cases across Strategy, Cybersecurity, Tech Strategy and Analytics. The hub is a clickable prototype that runs those four cases through the full review flow, so reviewers see each case exactly as it will appear on the site.</dd>
+  <dt>Stack</dt><dd>Python, python-pptx, PDF rendering, HTML/JavaScript prototype, Claude skills.</dd>
 </dl>
 
 <h3 id="p6"><span class="n">3.6</span>Public code</h3>

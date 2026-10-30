@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Felipe Paziani</title>
+<meta name="description" content="Felipe Paziani — Data Analyst and Economics student at UNICAMP. Python, SQL, machine learning and consulting projects.">
+<meta property="og:title" content="Felipe Paziani — Data Analyst">
+<meta property="og:description" content="Turning messy data into decisions: evidence from five projects.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF; --ink:#1B2333; --muted:#5A6475; --rule:#C9CED6;
+  --link:#1D4E89; --bar:#1D4E89; --bar-soft:#7FA7D9; --shade:#F3F5F8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141922; --ink:#E6E9EE; --muted:#9AA4B4; --rule:#3A4352;
+    --link:#8DB6EA; --bar:#8DB6EA; --bar-soft:#4A6E9C; --shade:#1B2230;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141922; --ink:#E6E9EE; --muted:#9AA4B4; --rule:#3A4352;
+  --link:#8DB6EA; --bar:#8DB6EA; --bar-soft:#4A6E9C; --shade:#1B2230;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif; font-optical-sizing:auto;
+  font-size:1.125rem; line-height:1.62;
+}
+.paper{max-width:44rem; margin:0 auto; padding:4.5rem 1rem 5rem}
+a{color:var(--link); text-decoration-thickness:1px; text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--link); outline-offset:3px; border-radius:2px}
+
+/* Title block */
+.titleblock{text-align:center; margin-bottom:2.75rem}
+.series{font-size:.9rem; color:var(--muted); margin:0 0 1.75rem}
+h1{font-size:clamp(1.85rem,5vw,2.6rem); line-height:1.15; font-weight:600; margin:0 0 1.5rem; letter-spacing:-.01em}
+.author{font-size:1.2rem; margin:0}
+.affil{color:var(--muted); font-size:.98rem; margin:.25rem 0 0}
+.date{color:var(--muted); font-size:.98rem; margin:.9rem 0 0}
+.contact{margin:1.25rem 0 0; font-size:.98rem}
+.contact a{margin:0 .6rem}
+
+.abstract{margin:0 auto 2.5rem; max-width:38rem; font-size:1.02rem}
+.abstract h2{font-size:1rem; text-align:center; margin:0 0 .4rem; font-weight:600}
+.abstract p{margin:0 0 .8rem; text-align:justify; hyphens:auto}
+.keywords{font-size:.95rem; margin:.2rem 0 0}
+.keywords b{font-weight:600}
+
+/* Sections */
+h2.sec{font-size:1.3rem; font-weight:600; margin:3rem 0 .9rem}
+h3{font-size:1.08rem; font-weight:600; margin:2.1rem 0 .5rem}
+h2.sec .n, h3 .n{display:inline-block; min-width:2.2em}
+p{margin:0 0 1rem}
+.lede{font-style:italic; color:var(--muted); margin-top:-.35rem}
+dl.case{margin:0 0 .5rem}
+dl.case dt{font-style:italic; float:left; clear:left; width:6.2rem; color:var(--muted)}
+dl.case dd{margin:0 0 .55rem 6.2rem}
+@media (max-width:560px){
+  dl.case dt{float:none; width:auto}
+  dl.case dd{margin-left:0}
+}
+
+/* Tables: booktabs style */
+figure{margin:2rem 0}
+figcaption{font-size:.95rem; margin-bottom:.6rem}
+figcaption b{font-weight:600}
+.tablewrap{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:.95rem; line-height:1.45; font-variant-numeric:tabular-nums lining-nums}
+thead th{font-weight:600; text-align:left; padding:.45rem .7rem .45rem 0; border-top:2px solid var(--ink); border-bottom:1px solid var(--ink); vertical-align:bottom}
+tbody td{padding:.5rem .7rem .5rem 0; vertical-align:top}
+tbody tr:last-child td{border-bottom:2px solid var(--ink)}
+td.num, th.num{text-align:right; white-space:nowrap}
+.notes{font-size:.86rem; color:var(--muted); margin-top:.55rem; line-height:1.5}
+
+/* Figure 1 */
+.chart{display:block; width:100%; height:auto}
+.chart text{font-family:"Source Serif 4",Georgia,serif; fill:var(--ink)}
+.chart .lbl{font-size:15px}
+.chart .val{font-size:15px; font-weight:600}
+.chart .axis{stroke:var(--ink); stroke-width:1}
+.chart .tick{stroke:var(--rule); stroke-width:1}
+.chart .ticklbl{font-size:13px; fill:var(--muted)}
+.bar-before{fill:var(--bar-soft)}
+.bar-after{fill:var(--bar)}
+.grow{transform-origin:left; transform-box:fill-box; animation:grow 1.1s cubic-bezier(.2,.7,.2,1) .3s both}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.grow{animation:none}}
+
+/* Footnotes */
+sup a{text-decoration:none; font-size:.78em; padding:0 .1em}
+.footnotes{margin-top:3.5rem; border-top:1px solid var(--rule); padding-top:1rem; font-size:.9rem; color:var(--muted)}
+.footnotes ol{padding-left:1.2rem; margin:0}
+.footnotes li{margin-bottom:.45rem}
+.footnotes li:target{background:var(--shade)}
+.back{text-decoration:none; margin-left:.3rem}
+
+ul.plain{padding-left:1.2rem; margin:0 0 1rem}
+ul.plain li{margin-bottom:.35rem}
+.colophon{margin-top:2.5rem; font-size:.85rem; color:var(--muted); text-align:center}
+.theme-toggle{position:fixed; top:.9rem; right:1rem; font:inherit; font-size:.85rem; color:var(--muted); background:var(--paper); border:1px solid var(--rule); border-radius:4px; padding:.25rem .6rem; cursor:pointer}
+.theme-toggle:hover{color:var(--ink)}
+@media print{.theme-toggle{display:none} .grow{animation:none}}
+</style>
+</head>
+<body>
+<button class="theme-toggle" type="button" aria-label="Switch colour theme">Dark mode</button>
+<main class="paper">
+
+<header class="titleblock">
+  <p class="series">Portfolio working paper, revised October 2026</p>
+  <h1>Turning messy data into decisions: evidence from five projects</h1>
+  <p class="author">Felipe Paziani</p>
+  <p class="affil">Data Analyst, Peers Consulting + Technology<br>BSc Economics candidate, UNICAMP</p>
+  <p class="date">São Paulo, Brazil</p>
+  <p class="contact"><a href="https://www.linkedin.com/in/fepaziani/">LinkedIn</a><a href="https://github.com/fepaziani">GitHub</a></p>
+</header>
+
+<section class="abstract" aria-labelledby="abs">
+  <h2 id="abs">Abstract</h2>
+  <p>I am a data analyst with an economist's training. Over four years in consulting, at a junior enterprise, Alvarez &amp; Marsal and Peers Consulting + Technology, I have built machine learning pipelines, pricing models and decision tools for large Brazilian companies. This paper presents five of those projects, plus six public repositories, in a common format: setting, approach, result. The headline finding is that the expensive part of most business problems is not the model but the messy input, and that structuring it well pays off quickly: in the strongest case, reviewing 1,000 invoices went from about a week of consultant time to ten minutes.</p>
+  <p class="keywords"><b>Keywords:</b> Python, SQL, Databricks, deep learning, document extraction, pricing, LLM agents, business consulting.</p>
+  <p class="keywords"><b>JEL codes:</b> C45 (neural networks), C55 (large data sets), D40 (pricing), L81 (retail), M21 (business economics).</p>
+</section>
+
+<h2 class="sec" id="intro"><span class="n">1</span>Introduction</h2>
+<p>I came to data through economics, not computer science. When I joined the Disputes &amp; Investigations practice at Alvarez &amp; Marsal I did not know Python. I asked the strongest analysts on the data team what to study, completed about 200 hours of coursework in two months, and was staffed on a data project shortly after. Since then most of my work has sat where a business question meets data nobody has cleaned yet.</p>
+<p>Today I work as a data analyst in business consulting at Peers Consulting + Technology, mainly for clients in insurance, retail and education. I am finishing a BSc in Economics at UNICAMP, which gives me the econometrics behind the tools, and I am building a public data engineering portfolio through the DataTalksClub Zoomcamps.</p>
+<p>I am interested in data analyst and analytics engineering roles, especially in credit, risk and fintech, in Brazil or abroad.</p>
+
+<h2 class="sec" id="results"><span class="n">2</span>Summary of results</h2>
+<figure>
+  <figcaption><b>Table 1.</b> Projects at a glance</figcaption>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Project</th><th>Setting</th><th>Method</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td><a href="#p1">Invoice extraction</a></td><td>Financial disputes, A&amp;M</td><td>Deep learning on invoice photos</td><td>1,000 invoices in 10 min, from ~1 week</td></tr>
+      <tr><td><a href="#p2">Service pricing engine</a></td><td>Insurer's home-services arm<sup><a href="#fn1" id="r1a">1</a></sup></td><td>Python pricing strategies, web price signals</td><td>Working MVP; strategy-collapse bug found and fixed</td></tr>
+      <tr><td><a href="#p3">Competitor intelligence agent</a></td><td>Retail strategy, Peers</td><td>LLM pipeline with source audit trail</td><td>9-step design, 38-attribute catalogue, pilot scoped</td></tr>
+      <tr><td><a href="#p4">Process diagnostic</a></td><td>Product launches at an insurer<sup><a href="#fn1" id="r1b">1</a></sup></td><td>Structured interview evidence base</td><td>78 validated evidence records, 16-item roadmap</td></tr>
+      <tr><td><a href="#p5">Case-study generator</a></td><td>Marketing, Peers</td><td>Python document automation</td><td>Validated with 4 real cases across 4 practices</td></tr>
+    </tbody>
+  </table>
+  </div>
+</figure>
+
+<figure aria-labelledby="fig1cap">
+  <figcaption id="fig1cap"><b>Figure 1.</b> Consultant time to review 1,000 invoices, before and after the extraction model</figcaption>
+  <svg class="chart" viewBox="0 0 640 170" role="img" aria-label="Bar chart: about 2,400 minutes manually versus 10 minutes with the model">
+    <line class="tick" x1="150" y1="18" x2="150" y2="128"/>
+    <line class="tick" x1="270" y1="18" x2="270" y2="128"/>
+    <line class="tick" x1="390" y1="18" x2="390" y2="128"/>
+    <line class="tick" x1="510" y1="18" x2="510" y2="128"/>
+    <rect class="bar-before grow" x="150" y="30" width="480" height="34"/>
+    <rect class="bar-after grow" x="150" y="84" width="2" height="34"/>
+    <line class="axis" x1="150" y1="18" x2="150" y2="128"/>
+    <text class="lbl" x="140" y="52" text-anchor="end">Manual review</text>
+    <text class="lbl" x="140" y="106" text-anchor="end">With the model</text>
+    <text class="val" x="620" y="52" text-anchor="end">≈ 2,400 min</text>
+    <text class="val" x="162" y="106">10 min</text>
+    <text class="ticklbl" x="150" y="148" text-anchor="middle">0</text>
+    <text class="ticklbl" x="270" y="148" text-anchor="middle">600</text>
+    <text class="ticklbl" x="390" y="148" text-anchor="middle">1,200</text>
+    <text class="ticklbl" x="510" y="148" text-anchor="middle">1,800</text>
+    <text class="ticklbl" x="630" y="148" text-anchor="end">2,400 min</text>
+  </svg>
+  <p class="notes">Notes: the manual figure assumes one consultant working a 40-hour week (≈ 2,400 minutes), the observed pace before automation. The ratio is roughly 240 to 1.</p>
+</figure>
+
+<h2 class="sec" id="projects"><span class="n">3</span>Projects</h2>
+
+<h3 id="p1"><span class="n">3.1</span>Invoice extraction with deep learning</h3>
+<p class="lede">Alvarez &amp; Marsal, Disputes &amp; Investigations, 2024–2025</p>
+<dl class="case">
+  <dt>Setting</dt><dd>A financial dispute required reviewing tens of thousands of Brazilian invoices (<i>notas fiscais</i>), photographed in different layouts across every state. Each consultant reviewed about 1,000 invoices per week by hand.</dd>
+  <dt>Approach</dt><dd>I trained a deep learning model that reads the invoice photos, extracts and classifies the relevant fields, and writes them to a structured spreadsheet ready for analysis.</dd>
+  <dt>Result</dt><dd>1,000 invoices processed in about ten minutes instead of a week, freeing the team to spend its time on the analysis rather than data entry (Figure 1).</dd>
+  <dt>Stack</dt><dd>Python, deep learning, Excel output.</dd>
+</dl>
+<p>On the same team I also worked on NLP, web scraping and dispute analytics.<sup><a href="#fn2" id="r2">2</a></sup></p>
+
+<h3 id="p2"><span class="n">3.2</span>Pricing engine for on-demand home services</h3>
+<p class="lede">Peers Consulting + Technology, 2026</p>
+<dl class="case">
+  <dt>Setting</dt><dd>Independent repair technicians (appliances, electrical, plumbing, HVAC) rarely publish prices, so a home-services business had no market reference for what to charge.<sup><a href="#fn1" id="r1c">1</a></sup></dd>
+  <dt>Approach</dt><dd>I built a Python MVP, starting with refrigerator repair, that compares several pricing strategies. I also designed the pipeline that feeds it market evidence: define the search, gather internet price signals, extract and standardise them, validate data quality, then pass them to the recommendation step.</dd>
+  <dt>Result</dt><dd>A working prototype. Along the way I found that the visit fee was leaking into every strategy and making them return identical prices, traced the cause and fixed it.</dd>
+  <dt>Stack</dt><dd>Python, pandas, web search and places APIs.</dd>
+</dl>
+
+<h3 id="p3"><span class="n">3.3</span>Competitor intelligence agent</h3>
+<p class="lede">Peers Consulting + Technology, 2026, in development</p>
+<dl class="case">
+  <dt>Setting</dt><dd>Consulting teams rebuild competitor maps from scratch for each client. The goal is a reusable tool where only the configuration and a sector catalogue change between clients.</dd>
+  <dt>Approach</dt><dd>A nine-step LLM pipeline: configuration, discovery, list validation, public APIs, web collection, automatic validation, normalisation, human review and output. Attributes come from a two-layer catalogue, 28 generic plus 10 for food retail. Every fact carries its source, so the comparative view can be audited.</dd>
+  <dt>Result</dt><dd>Full design and prompts complete; pilot scoped on Brazilian cash-and-carry retail using only public sources (BrasilAPI, CVM open data).</dd>
+  <dt>Stack</dt><dd>Claude API, Databricks, Python, Excel output.</dd>
+</dl>
+
+<h3 id="p4"><span class="n">3.4</span>Diagnostic of a product launch process</h3>
+<p class="lede">Peers Consulting + Technology, 2026</p>
+<dl class="case">
+  <dt>Setting</dt><dd>Launching a new product at a large insurer took too long, and nobody agreed on where it stalled.<sup><a href="#fn1" id="r1d">1</a></sup></dd>
+  <dt>Approach</dt><dd>I turned a large round of stakeholder interviews into a structured evidence base, cross-checked every entry against the raw notes, and mapped pain points to actions.</dd>
+  <dt>Result</dt><dd>78 validated evidence records, an impact-effort matrix with a 16-item implementation roadmap, and a 37-step target launch flow for executive review.</dd>
+  <dt>Stack</dt><dd>Excel, PowerPoint, process mapping.</dd>
+</dl>
+
+<h3 id="p5"><span class="n">3.5</span>Case-study generator</h3>
+<p class="lede">Peers Consulting + Technology, 2026</p>
+<dl class="case">
+  <dt>Setting</dt><dd>Marketing needed project write-ups for the website and institutional deck, but drafting each one from internal project files took hours and the formats kept breaking.</dd>
+  <dt>Approach</dt><dd>A Python generator that turns a project one-pager into site and deck versions. It checks character limits, measures whether text fits each slide using font metrics, refuses to invent figures, and places client logos from a 135-logo library, choosing the background automatically.</dd>
+  <dt>Result</dt><dd>Tested end to end on four real cases across Strategy, Cybersecurity, Tech Strategy and Analytics.</dd>
+  <dt>Stack</dt><dd>Python, python-pptx, PDF rendering, Claude skills.</dd>
+</dl>
+
+<h3 id="p6"><span class="n">3.6</span>Public code</h3>
+<p>Smaller tools from my disputes and data work, published as standalone scripts.</p>
+<figure>
+  <figcaption><b>Table 2.</b> Public repositories</figcaption>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Repository</th><th>What it does</th><th>Stack</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://github.com/fepaziani/ML.Data">ML.Data</a></td><td>Trains a custom named-entity recognition model in Portuguese to pull reference fields out of messy invoice text and write them back to Excel</td><td>spaCy, pandas</td></tr>
+      <tr><td><a href="https://github.com/fepaziani/text.similarity">text.similarity</a></td><td>Groups Portuguese documents by meaning: similarity matrix, Ward hierarchical clustering, cluster count chosen by silhouette score, dendrogram</td><td>spaCy, SciPy</td></tr>
+      <tr><td><a href="https://github.com/fepaziani/CNPJ.API">CNPJ.API</a></td><td>API that enriches a spreadsheet of Brazilian company IDs (CNPJ) with public registry data, with rate limiting and caching</td><td>FastAPI, pandas</td></tr>
+      <tr><td><a href="https://github.com/fepaziani/legal.download">legal.download</a></td><td>Retrieves court documents for a list of case IDs: browser login, session reuse, parallel downloads and unzipping</td><td>Selenium, requests, threading</td></tr>
+      <tr><td><a href="https://github.com/fepaziani/Document.Downloader">Document.Downloader</a></td><td>Earlier browser-automation version of the document retrieval workflow</td><td>Selenium</td></tr>
+      <tr><td><a href="https://github.com/fepaziani/SQL.Sales">SQL.Sales</a></td><td>Finds each salesperson's top sale of the year with CTEs and window ranking</td><td>SQL</td></tr>
+    </tbody>
+  </table>
+  </div>
+</figure>
+
+<h2 class="sec" id="experience"><span class="n">4</span>Experience</h2>
+<figure>
+  <figcaption><b>Table 3.</b> Professional history</figcaption>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Period</th><th>Role</th><th>Organisation</th></tr></thead>
+    <tbody>
+      <tr><td>Mar 2026 – present</td><td>Data Analyst, business consulting</td><td>Peers Consulting + Technology, São Paulo</td></tr>
+      <tr><td>Dec 2025 – Mar 2026</td><td>J-1 Work &amp; Travel exchange; took on store KPI reporting and was offered a finance role across the franchise group</td><td>Franchise restaurant group, United States</td></tr>
+      <tr><td>Aug 2025 – Dec 2025</td><td>Data Analyst, business consulting</td><td>Peers Consulting + Technology, São Paulo</td></tr>
+      <tr><td>Jan 2024 – Jul 2025</td><td>Data Analyst, Data Analytics &amp; Cybersecurity</td><td>Alvarez &amp; Marsal, Disputes &amp; Investigations</td></tr>
+      <tr><td>May 2022 – Jan 2024</td><td>Data Consultant</td><td>ECONOMICA Consultoria Júnior, UNICAMP</td></tr>
+    </tbody>
+  </table>
+  </div>
+</figure>
+
+<h2 class="sec" id="education"><span class="n">5</span>Education and certifications</h2>
+<ul class="plain">
+  <li><b>BSc Economics</b>, Universidade Estadual de Campinas (UNICAMP), expected December 2026. First in my family to attend university.</li>
+  <li><b>EF SET English Certificate</b>, 87/100, CEFR C2, August 2026.</li>
+  <li><b>Python for Data Science</b>, Data Science Academy.</li>
+  <li><b>In progress:</b> DataTalksClub Machine Learning Zoomcamp (from September 2026); Data Engineering Zoomcamp (from January 2027). Project repositories will be linked here.</li>
+</ul>
+
+<h2 class="sec" id="toolkit">Appendix A. Toolkit</h2>
+<figure>
+  <figcaption><b>Table A1.</b> Tools by use</figcaption>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Use</th><th>Tools</th></tr></thead>
+    <tbody>
+      <tr><td>Programming and data</td><td>Python (pandas, scikit-learn, deep learning), SQL</td></tr>
+      <tr><td>Big data</td><td>Databricks</td></tr>
+      <tr><td>AI and automation</td><td>Machine learning, NLP, document extraction, LLM agents (Claude API), web scraping</td></tr>
+      <tr><td>BI and communication</td><td>Looker Studio, Excel, PowerPoint</td></tr>
+      <tr><td>Quantitative methods</td><td>Econometrics, statistics, pricing and market analysis</td></tr>
+      <tr><td>Languages</td><td>Portuguese (native), English (C2), French (learning)</td></tr>
+    </tbody>
+  </table>
+  </div>
+</figure>
+
+<section class="footnotes" aria-label="Footnotes">
+  <ol>
+    <li id="fn1">Client names are withheld for confidentiality. Figures shown are the outcomes of the work, not client data. <a class="back" href="#r1a" aria-label="Back to text">↩</a></li>
+    <li id="fn2">Code from client engagements belongs to the employer and is not published. Standalone public scripts are listed in <a href="#p6">section 3.6</a>. <a class="back" href="#r2" aria-label="Back to text">↩</a></li>
+  </ol>
+</section>
+
+<p class="colophon">Set in Source Serif 4. Last updated October 2026.</p>
+</main>
+<script>
+(function(){
+  var btn=document.querySelector('.theme-toggle'), root=document.documentElement;
+  function current(){
+    var t=root.getAttribute('data-theme');
+    if(t) return t;
+    return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  function label(){btn.textContent=current()==='dark'?'Light mode':'Dark mode';}
+  try{var saved=localStorage.getItem('theme'); if(saved) root.setAttribute('data-theme',saved);}catch(e){}
+  label();
+  btn.addEventListener('click',function(){
+    var next=current()==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+    label();
+  });
+})();
+</script>
+</body>
+</html>
